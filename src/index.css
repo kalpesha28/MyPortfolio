@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Titanium Luxury Theme - Apple Style */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Pure White Primary */
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 0%;
+
+    /* Soft Grey Secondary */
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Titanium Accent */
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 98%;
+
+    --radius: 1rem;
+
+    /* Custom Titanium Variables */
+    --titanium-dark: 0 0% 8%;
+    --titanium-mid: 0 0% 14%;
+    --titanium-light: 0 0% 20%;
+    --titanium-text: 0 0% 60%;
+    
+    --glass-bg: 0 0% 8% / 0.8;
+    --glass-border: 0 0% 20% / 0.3;
+    --glass-blur: 40px;
+    
+    --glow-white: 0 0 60px hsl(0 0% 100% / 0.15), 0 0 120px hsl(0 0% 100% / 0.05);
+    --glow-soft: 0 0 40px hsl(0 0% 100% / 0.1);
+
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: auto; /* Let Lenis handle smooth scrolling */
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  /* Scrollbar - minimal */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+}
+
+@layer components {
+  /* Glass Panel - Apple Style */
+  .glass-panel {
+    @apply relative overflow-hidden rounded-2xl;
+    background: hsl(var(--glass-bg));
+    border: 1px solid hsl(var(--glass-border));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+  }
+
+  /* Pill Button */
+  .pill-button {
+    @apply relative inline-flex items-center justify-center px-8 py-4 rounded-full;
+    @apply bg-primary text-primary-foreground font-medium text-lg;
+    @apply transition-all duration-500 ease-out;
+    @apply hover:scale-105 hover:shadow-[0_0_40px_hsl(0_0%_100%/0.2)];
+  }
+
+  .pill-button-outline {
+    @apply relative inline-flex items-center justify-center px-8 py-4 rounded-full;
+    @apply bg-transparent text-primary font-medium text-lg;
+    @apply border border-primary/30 transition-all duration-500 ease-out;
+    @apply hover:border-primary/60 hover:bg-primary/5;
+  }
+
+  /* Bento Card */
+  .bento-card {
+    @apply relative overflow-hidden rounded-3xl;
+    @apply bg-card transition-all duration-700 ease-out;
+    @apply hover:scale-[1.02] hover:shadow-2xl;
+  }
+
+  .bento-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    background: linear-gradient(135deg, hsl(0 0% 100% / 0.03) 0%, transparent 50%);
+  }
+
+  .bento-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Specs Grid */
+  .specs-divider {
+    @apply relative;
+  }
+
+  .specs-divider::after {
+    content: '';
+    @apply absolute right-0 top-1/2 -translate-y-1/2 h-16 w-px bg-border;
+  }
+
+  .specs-divider:last-child::after {
+    @apply hidden;
+  }
+
+  /* Timeline Drawing Animation */
+  @keyframes draw-line {
+    from { height: 0; }
+    to { height: 100%; }
+  }
+
+  .timeline-line {
+    animation: draw-line 2s ease-out forwards;
+  }
+
+  /* Stagger Fade Up Animation */
+  @keyframes stagger-fade-up {
+    from { 
+      opacity: 0; 
+      transform: translateY(60px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  .stagger-fade-up {
+    animation: stagger-fade-up 1s ease-out forwards;
+  }
+
+  /* Orb Glow */
+  @keyframes orb-pulse {
+    0%, 100% { 
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% { 
+      opacity: 0.8;
+      transform: scale(1.1);
+    }
+  }
+
+  .orb-glow {
+    animation: orb-pulse 4s ease-in-out infinite;
+  }
+
+  /* Text Reveal Animation */
+  @keyframes text-reveal {
+    from { 
+      clip-path: inset(0 100% 0 0);
+    }
+    to { 
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  .text-reveal {
+    animation: text-reveal 1.5s ease-out forwards;
+  }
+
+  /* Scale on scroll */
+  .scale-on-scroll {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Large negative space utility */
+  .section-padding {
+    @apply py-32 md:py-48 lg:py-64;
+  }
+
+  .section-padding-sm {
+    @apply py-20 md:py-32 lg:py-40;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Film Grain Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.05;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  filter: contrast(170%) brightness(100%);
+}
