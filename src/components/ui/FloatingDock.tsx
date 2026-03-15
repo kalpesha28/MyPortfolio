@@ -54,17 +54,17 @@ export const FloatingDock = () => {
       {/* All sections perfectly mapped to the exact IDs in your Index.tsx */}
       <DockIcon mouseX={mouseX} icon={Home} label="Home" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
       <DockIcon mouseX={mouseX} icon={User} label="Dossier" onClick={() => scrollToSection('about')} />
-      <DockIcon mouseX={mouseX} icon={Briefcase} label="Timeline" onClick={() => scrollToSection('experience')} />
+      <DockIcon mouseX={mouseX} icon={Briefcase} label="Experience" onClick={() => scrollToSection('experience')} />
       <DockIcon mouseX={mouseX} icon={Code2} label="Deployments" onClick={() => scrollToSection('projects')} />
       <DockIcon mouseX={mouseX} icon={Target} label="Pillars" onClick={() => scrollToSection('specs')} />
       <DockIcon mouseX={mouseX} icon={Cpu} label="Arsenal" onClick={() => scrollToSection('skills')} />
-      <DockIcon mouseX={mouseX} icon={Mail} label="Comms" onClick={() => scrollToSection('contact')} />
+      <DockIcon mouseX={mouseX} icon={Mail} label="Contact" onClick={() => scrollToSection('contact')} />
       
       {/* Divider */}
       <div className="h-10 w-px bg-white/10 mx-1" />
       
       {/* Resume Link */}
-      <DockIcon mouseX={mouseX} icon={FileText} label="Resume" onClick={() => window.open('/resume.pdf', '_blank')} />
+      <DockIcon mouseX={mouseX} icon={FileText} label="Resume" onClick={() => window.open('/Resume_final.pdf', '_blank')} />
     </div>
   );
 };
