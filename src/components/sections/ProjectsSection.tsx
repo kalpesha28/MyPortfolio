@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
-import { Github, ExternalLink, Lock, Terminal, Database, Smartphone, Globe } from 'lucide-react';
+import { Github, ExternalLink, Lock, Terminal, Database, Smartphone, Globe, Play } from 'lucide-react';
 
 // ─── FONT INJECT ─────────────────────────────────────────────────────────────
 const FontLoader: React.FC = () => {
@@ -29,9 +29,9 @@ const projects = [
     description: 'A zero-internet, LAN-only encrypted bot system engineered at HAL for transmitting classified internal documents. Built on raw socket programming with layered cryptographic handshakes — no cloud, no exposure, no trace.',
     tech: ['Java', 'Socket Programming', 'AES Cryptography', 'LAN Architecture'],
     githubUrl: 'https://github.com/kalpesha28/GhostLAN-Messenger',
-    demoUrl: null,
-    accent: '#ff003c',
-    accentDim: 'rgba(255,0,60,0.12)',
+    demoUrl: null, // Will trigger "WATCH DEMO"
+    accent: '#00f3ff', // Electric Cyan
+    accentDim: 'rgba(0,243,255,0.12)',
     image: '/GhostLAN.mp4',
   },
   {
@@ -47,8 +47,8 @@ const projects = [
     tech: ['Android', 'Java', 'Kotlin', 'Recommendation Engine'],
     githubUrl: 'https://github.com/Kalpesha/StyleMate',
     demoUrl: 'https://play.google.com/store',
-    accent: '#f59e0b',
-    accentDim: 'rgba(245,158,11,0.12)',
+    accent: '#a855f7', // Aurora Purple
+    accentDim: 'rgba(168,85,247,0.12)',
     image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80',
   },
   {
@@ -63,10 +63,10 @@ const projects = [
     description: 'A relational database-backed heritage explorer system. Structures, queries, and serves vast local cultural and historical data across a full-stack web interface. Schema-first architecture.',
     tech: ['PostgreSQL', 'React', 'Node.js', 'Relational Modeling'],
     githubUrl: 'https://github.com/kalpesha28/CultureConnect',
-    demoUrl: 'https://cultureconnect-demo.com',
-    accent: '#7c3aed',
-    accentDim: 'rgba(124,58,237,0.12)',
-    image: '/cultureconnect.mp4',
+    demoUrl: null, // 👈 CHANGE THIS TO NULL
+    accent: '#3b82f6', 
+    accentDim: 'rgba(59,130,246,0.12)',
+    image: '/cultureconnect.mp4', // Your video will now open when they click "Watch Demo"
   },
   {
     id: '04',
@@ -80,9 +80,9 @@ const projects = [
     description: 'Gamified deep-space data visualization platform built in 48hrs at NASA Space Apps with a 4-person squad. Pulls live NASA API feeds and renders orbital data as interactive 3D experiences.',
     tech: ['React', 'NASA Open APIs', 'Three.js', 'Data Viz'],
     githubUrl: 'https://github.com/kalpesha28/Nasa-Space-Challenge-App-2025-Space-Explorers',
-    demoUrl: 'https://nasa-squad-demo.com',
-    accent: '#00f3ff',
-    accentDim: 'rgba(0,243,255,0.12)',
+    demoUrl: 'https://nasa-space-challenge-app-2025-space-explorers-q10cwuc5l.vercel.app',
+    accent: '#6366f1', // Deep Indigo
+    accentDim: 'rgba(99,102,241,0.12)',
     image: '/Nasa_space_challenge_app.mp4',
   },
 ];
@@ -90,7 +90,7 @@ const projects = [
 // ─── STATUS PILL ─────────────────────────────────────────────────────────────
 const StatusPill: React.FC<{ status: string; accent: string }> = ({ status, accent }) => {
   const colors: Record<string, string> = {
-    CLASSIFIED: '#ff003c', DEPLOYED: '#22c55e', LIVE: '#00f3ff', AWARDED: '#f59e0b',
+    CLASSIFIED: '#00f3ff', DEPLOYED: '#a855f7', LIVE: '#3b82f6', AWARDED: '#6366f1',
   };
   const c = colors[status] || accent;
   return (
@@ -261,17 +261,21 @@ const ProjectCard: React.FC<{
                   <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: 10, letterSpacing: '0.1em', fontWeight: 700 }}>SOURCE</span>
                 </a>
               )}
-              {project.demoUrl ? (
-                <a href={project.demoUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 transition-all duration-300" style={{ border: `1px solid ${accent}55`, color: accent }}>
-                  <ExternalLink size={13} />
-                  <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: 10, letterSpacing: '0.1em' }}>LIVE DEPLOY</span>
-                </a>
-              ) : (
-                <div className="flex items-center gap-2 px-4 py-2 cursor-not-allowed" style={{ border: '1px solid rgba(255,255,255,0.08)', color: '#3f3f46' }}>
-                  <Lock size={13} />
-                  <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: 10, letterSpacing: '0.1em' }}>SECURED</span>
-                </div>
-              )}
+              
+              {/* SMART BUTTON LOGIC: Switches between Live URL and Video Demo */}
+              <a 
+                href={project.demoUrl || project.image} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex items-center gap-2 px-4 py-2 transition-all duration-300 hover:bg-white/5" 
+                style={{ border: `1px solid ${accent}55`, color: accent }}
+              >
+                {project.demoUrl ? <ExternalLink size={13} /> : <Play size={13} />}
+                <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: 10, letterSpacing: '0.1em' }}>
+                  {project.demoUrl ? 'LIVE DEPLOY' : 'WATCH DEMO'}
+                </span>
+              </a>
+
             </div>
           </div>
 
@@ -282,7 +286,6 @@ const ProjectCard: React.FC<{
             <CornerTick pos="bottom-3 left-3" color={`${accent}44`} flipY />
             <CornerTick pos="bottom-3 right-3" color={`${accent}44`} flipX flipY />
 
-            {/* UPGRADED MEDIA DISPLAY (IMAGE + VIDEO) */}
             <motion.div style={{ scale: imageScale }} className="w-full h-full">
               {project.image.endsWith('.mp4') ? (
                 <video
@@ -361,17 +364,17 @@ const SectionHeader: React.FC = () => {
             SELECTED
             <br />
             <span style={{
-              backgroundImage: 'linear-gradient(90deg, #ff003c 0%, #00f3ff 100%)',
+              backgroundImage: 'linear-gradient(90deg, #00f3ff 0%, #a855f7 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             }}>WORKS.</span>
           </h2>
-          {/* Red underline */}
+          {/* Blue underline */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={inView ? { scaleX: 1 } : {}}
             transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
             className="absolute -bottom-2 left-0 h-[3px] w-2/3"
-            style={{ background: 'linear-gradient(90deg, #ff003c, rgba(255,0,60,0.2), transparent)', transformOrigin: 'left' }}
+            style={{ background: 'linear-gradient(90deg, #3b82f6, rgba(59,130,246,0.3), transparent)', transformOrigin: 'left' }}
           />
         </motion.div>
 

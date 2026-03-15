@@ -5,11 +5,11 @@ import { PanelLeft } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/_QUARANTINE/button";
+import { Input } from "@/_QUARANTINE/input";
+import { Separator } from "@/_QUARANTINE/separator";
+import { Sheet, SheetContent } from "@/_QUARANTINE/sheet";
+import { Skeleton } from "@/_QUARANTINE/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state";

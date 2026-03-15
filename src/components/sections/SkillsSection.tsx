@@ -23,7 +23,6 @@ const row2 = [
 const MarqueeRow = ({ items, direction = 1, speed = 18 }) => (
   <motion.div 
     className="flex overflow-hidden py-8 select-none cursor-pointer"
-    // The "Whole Line" vertical movement on hover
     whileHover={{ 
       y: [0, -15, 15, 0],
       transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
@@ -44,7 +43,6 @@ const MarqueeRow = ({ items, direction = 1, speed = 18 }) => (
               {skill.name}
             </span>
           </div>
-          {/* Neon Glow Aura */}
           <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 blur-2xl transition-opacity -z-10" 
                style={{ backgroundColor: skill.color }} />
         </div>
@@ -59,11 +57,12 @@ export const SkillsSection = () => {
       
       {/* ── SECTION HEADER ── */}
       <div className="container mx-auto px-6 relative z-10 text-center mb-24">
-        <span className="text-xs font-mono text-purple-500 tracking-[0.6em] uppercase mb-6 block italic">
+        <span className="text-xs font-mono text-cyan-400 tracking-[0.6em] uppercase mb-6 block italic">
           THE ARSENAL // LOADOUT_v3.0
         </span>
+        {/* Added pr-4 and py-2 to the span below to prevent the italic 'Y' from clipping */}
         <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none">
-          TECHNICAL <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">MASTERY</span>
+          TECHNICAL <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 pr-4 py-2">MASTERY</span>
         </h2>
       </div>
 
@@ -72,10 +71,7 @@ export const SkillsSection = () => {
         <div className="absolute left-0 top-0 bottom-0 w-48 bg-gradient-to-r from-[#020205] to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-48 bg-gradient-to-l from-[#020205] to-transparent z-10" />
         
-        {/* Row 1: Core Engineering Languages */}
         <MarqueeRow items={row1} direction={1} speed={18} />
-        
-        {/* Row 2: Specialized Skills & Academic Proof */}
         <MarqueeRow items={row2} direction={-1} speed={20} />
       </div>
 

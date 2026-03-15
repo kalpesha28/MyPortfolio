@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Home, User, Code2, Briefcase, Mail, FileText } from 'lucide-react';
+import { Home, User, Target, Briefcase, Code2, Cpu, Mail, FileText } from 'lucide-react';
 
-// --- ICON COMPONENT (With Maginification) ---
+// --- ICON COMPONENT (With Magnification) ---
 const DockIcon = ({ mouseX, icon: Icon, label, onClick }: any) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -26,7 +26,7 @@ const DockIcon = ({ mouseX, icon: Icon, label, onClick }: any) => {
       <Icon className="text-white w-5 h-5 group-hover:w-8 group-hover:h-8 transition-all duration-200" />
       
       {/* Tooltip Label */}
-      <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-black border border-white/10 rounded-md text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+      <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/90 border border-white/10 rounded-md text-xs font-mono text-cyan-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
         {label}
       </span>
     </motion.div>
@@ -39,24 +39,31 @@ export const FloatingDock = () => {
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div 
-      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex h-16 items-end gap-4 rounded-2xl bg-black/50 border border-white/10 px-4 pb-3 backdrop-blur-xl"
+      // I bumped the z-index to z-[100] to ensure it always floats above your 3D cards
+      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] flex h-16 items-end gap-2 sm:gap-4 rounded-2xl bg-[#03040a]/80 border border-white/10 px-4 pb-3 backdrop-blur-xl shadow-[0_0_30px_rgba(0,243,255,0.1)]"
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
     >
+      {/* All sections perfectly mapped to the exact IDs in your Index.tsx */}
       <DockIcon mouseX={mouseX} icon={Home} label="Home" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
-      <DockIcon mouseX={mouseX} icon={Briefcase} label="Projects" onClick={() => scrollToSection('projects')} />
-      <DockIcon mouseX={mouseX} icon={Code2} label="Skills" onClick={() => scrollToSection('skills')} />
-      <DockIcon mouseX={mouseX} icon={User} label="Experience" onClick={() => scrollToSection('timeline')} />
-      <DockIcon mouseX={mouseX} icon={Mail} label="Contact" onClick={() => scrollToSection('contact')} />
+      <DockIcon mouseX={mouseX} icon={User} label="Dossier" onClick={() => scrollToSection('about')} />
+      <DockIcon mouseX={mouseX} icon={Briefcase} label="Timeline" onClick={() => scrollToSection('experience')} />
+      <DockIcon mouseX={mouseX} icon={Code2} label="Deployments" onClick={() => scrollToSection('projects')} />
+      <DockIcon mouseX={mouseX} icon={Target} label="Pillars" onClick={() => scrollToSection('specs')} />
+      <DockIcon mouseX={mouseX} icon={Cpu} label="Arsenal" onClick={() => scrollToSection('skills')} />
+      <DockIcon mouseX={mouseX} icon={Mail} label="Comms" onClick={() => scrollToSection('contact')} />
       
       {/* Divider */}
       <div className="h-10 w-px bg-white/10 mx-1" />
       
+      {/* Resume Link */}
       <DockIcon mouseX={mouseX} icon={FileText} label="Resume" onClick={() => window.open('/resume.pdf', '_blank')} />
     </div>
   );

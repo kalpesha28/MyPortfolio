@@ -291,7 +291,7 @@ export const HeroSection: React.FC = () => {
                 letterSpacing: '0.25em', color: '#fff', textTransform: 'uppercase',
               }}
             >
-              Software Engineering • Machine Learning • Full Stack
+              SOFTWARE ENGINEERING • PROBLEM SOLVING • FULL STACK
             </div>
             <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-cyan-500" />
           </motion.div>

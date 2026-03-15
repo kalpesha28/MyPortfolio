@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 // --- COMPONENT IMPORTS ---
 import { HeroSection } from '@/components/sections/HeroSection';
-import { AboutSection } from '@/components/sections/AboutSection'; // <--- NEW IMPORT
+import { AboutSection } from '@/components/sections/AboutSection'; 
 import { ProjectsSection } from '@/components/sections/ProjectsSection';
 import { SpecsSection } from '@/components/sections/SpecsSection';
+import { ExperienceSection } from "@/components/sections/ExperienceSection"; 
 import { SkillsSection } from '@/components/sections/SkillsSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 
@@ -29,9 +30,10 @@ const Index = () => {
           <FloatingDock />
 
           <div id="hero"><HeroSection /></div>
-
-          {/* NEW SECTION: ABOUT (Identity Layer) */}
           <div id="about"><AboutSection /></div>
+          
+          {/* 🚀 NEW SECTION: EXPERIENCE TIMELINE DROPPED HERE */}
+          <div id="experience"><ExperienceSection /></div>
           
           <div id="projects"><ProjectsSection /></div>
           <div id="specs"><SpecsSection /></div> 
