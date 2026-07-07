@@ -49,7 +49,7 @@ const projects = [
     demoUrl: null, // Set to your video demo path or live URL when ready
     accent: '#00f3ff', 
     accentDim: 'rgba(0,243,255,0.12)',
-    image: '/codecortex-demo.mp4', 
+    image: '/Users/kalpesha/Documents/projects/MyPortfolio/public/codecortex.mp4', 
   },
   {
     id: '03',
@@ -66,7 +66,7 @@ const projects = [
     demoUrl: null, 
     accent: '#a855f7', 
     accentDim: 'rgba(168,85,247,0.12)',
-    image: '/routewise-demo.mp4',
+    image: '/RouteWise.mp4',
   },
   {
     id: '04',
