@@ -286,7 +286,7 @@ const ProjectCard: React.FC<{
             <CornerTick pos="bottom-3 left-3" color={`${accent}44`} flipY />
             <CornerTick pos="bottom-3 right-3" color={`${accent}44`} flipX flipY />
 
-            <motion.div style={{ scale: imageScale }} className="w-full h-full">
+            <motion.div className="w-full h-full flex items-center justify-center">
               {project.image.endsWith('.mp4') ? (
                 <video
                   src={project.image}
