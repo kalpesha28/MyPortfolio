@@ -294,14 +294,14 @@ const ProjectCard: React.FC<{
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   style={{ filter: 'contrast(1.1) saturate(0.6) brightness(0.85)' }}
                 />
               ) : (
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   style={{ filter: 'contrast(1.1) saturate(0.6) brightness(0.85)' }}
                 />
               )}
